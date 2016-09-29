@@ -35,13 +35,13 @@
           that   =  $(this),
           keywordList = "";
       
-      if($(this).attr('alt') == "") {
-        $(this).after('<p>Alt attribute exists but is not defined</p>');
-      } else if ($(this).attr('alt') === undefined) {
-        $(this).after('<p>Alt attribute is undefined</p>');
-      } else {
-        $(this).after('<p>Alt: ' + $(this).attr('alt') + '</p>');
-      }
+//      if($(this).attr('alt') == "") {
+//        $(this).after('<p>Alt attribute exists but is not defined</p>');
+//      } else if ($(this).attr('alt') === undefined) {
+//        $(this).after('<p>Alt attribute is undefined</p>');
+//      } else {
+//        $(this).after('<p>Alt: ' + $(this).attr('alt') + '</p>');
+//      }
 
       if($(this).attr('alt') == "" || $(this).attr('alt') === undefined) {
 
@@ -74,7 +74,6 @@
           },
   
           success: function(data, textStatus, jqXHR) {
-            //console.log(data.responses[0].labelAnnotations);
 
             $.each(data.responses[0].labelAnnotations, function(i, val) {
               if (val['score'] >= 0.5) {
@@ -84,7 +83,6 @@
 
             keywordList = keywordList.slice(0, -2);
 
-            //console.log(keywordList);
             that.attr('alt', 'This image may contain ' + keywordList);
 
             that.after('<p class="new">New Alt: ' + that.attr('alt') + '</p>');
@@ -96,17 +94,13 @@
 
       }
 
-      //setTimeout(function() {
-      //    if(that.attr('alt') == "") {
-      //     that.after('<p>Alt attribute exists but is not defined</p>');
-      //    } else if (that.attr('alt') === undefined) {
-      //      that.after('<p>Alt attribute is undefined</p>');
-      //    } else {
-      //      that.after('<p>Alt: ' + that.attr('alt') + '</p>');
-      //    }
-      //}, 3000);
     });
   }
 
-  altTextChecker();
+    var startButton = $('<button id="button">get me some alt text</button>');
+    $('body').prepend(startButton);
+    
+    $('#button').on('click', function() {
+      altTextChecker();
+    });
 });
