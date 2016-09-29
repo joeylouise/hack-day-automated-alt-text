@@ -1,5 +1,9 @@
-$(document).ready(function() {
-  
+  $(document).ready(function() {
+
+  var api_key = 'AIzaSyDLIGqwf3JKvLURq3nzwrV3IkDwZmoegP8';
+
+  var brokenImages = [];
+    
     // Converts image to dataUri
     function getDataUri(url, callback) {
       var image = new Image();
@@ -19,25 +23,57 @@ $(document).ready(function() {
       };
 
       image.src = url;
-  }
-  
+  };
+
   // Selects href from images without alt text
   function altTextChecker() {
 
     $('img').each(function() {
-
-      $(this).after('<p>Output: ' + $(this).attr('alt') + '</p>');
+      var imgSrc = $(this).attr('src');
+      
+      //$(this).after('<p>Output: ' + $(this).attr('alt') + '</p>');
 
       if($(this).attr('alt') == "" || $(this).attr('alt') === undefined) {
-        var imgSrc = $(this).attr('src');
         
         getDataUri(imgSrc, function(dataUri) {
-          // Do whatever you'd like with the Data URI!
-          console.log(dataUri)
+
+        var json = '{' +
+          ' "requests": [' +
+          '	{ ' +
+          '	  "image": {' +
+          '	    "content":"' + dataUri.replace("data:image/png;base64,", "") + '"' +
+          '	  },' +
+          '	  "features": [' +
+          '	      {' +
+          '	      	"type": "LABEL_DETECTION",' +
+          '			"maxResults": 10' +
+          '	      }' +
+          '	  ]' +
+          '	}' +
+          ']' +
+          '}';
+  
+        $.ajax({
+          type: 'POST',
+          url: "https://vision.googleapis.com/v1/images:annotate?key=" + api_key,
+          dataType: 'json',
+          data: json,
+          //Include headers, otherwise you get an odd 400 error.
+          headers: {
+            "Content-Type": "application/json",
+          },
+  
+          success: function(data, textStatus, jqXHR) {
+            console.log(data.responses[0].labelAnnotations);
+          }
+  
         });
+  
+      });
+        
       }
     });
-  };
+  }
 
   altTextChecker();
 });
