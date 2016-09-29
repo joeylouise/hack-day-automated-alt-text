@@ -102,5 +102,6 @@
     
     $('#button').on('click', function() {
       altTextChecker();
+      $(this).remove();
     });
 });
