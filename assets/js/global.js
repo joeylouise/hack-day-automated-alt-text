@@ -5,26 +5,26 @@
 
   var brokenImages = [];
 
-    // Converts image to dataUri
-    function getDataUri(url, callback) {
-      var image = new Image();
+  // Converts image to dataUri
+  function getDataUri(url, callback) {
+    var image = new Image();
 
-      image.onload = function () {
-          var canvas = document.createElement('canvas');
-          canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
-          canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+    image.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
 
-          canvas.getContext('2d').drawImage(this, 0, 0);
+        canvas.getContext('2d').drawImage(this, 0, 0);
 
-          // Get raw image data
-          callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+        // Get raw image data
+        callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
 
-          // ... or get as Data URI
-          callback(canvas.toDataURL('image/png'));
-      };
-
-      image.src = url;
+        // ... or get as Data URI
+        //callback(canvas.toDataURL('image/png'));
     };
+
+    image.src = url;
+  };
 
   // Selects href from images without alt text
   function altTextChecker() {
@@ -72,13 +72,26 @@
           },
   
           success: function(data, textStatus, jqXHR) {
-            console.log(data.responses[0].labelAnnotations);
+            //console.log(data.responses[0].labelAnnotations);
+
+            var keywordList = "";
+
+            $.each(data.responses[0].labelAnnotations, function(i, val) {
+              if (val['score'] >= 0.8) {
+                keywordList = keywordList + val['description'] + ', ';
+              }
+            });
+
+            keywordList = keywordList.slice(0, -2);
+
+            console.log(keywordList);
           }
   
         });
   
-      });
-        
+        });
+
+
       }
     });
   }
