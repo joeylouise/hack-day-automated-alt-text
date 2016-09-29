@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     $('img').each(function() {
       if($(this).attr('alt') == "" || $(this).attr('alt') === undefined) {
-        console.log($(this).attr('href'));
+        console.log($(this).attr('src'));
       }
     });
   };
