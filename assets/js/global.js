@@ -3,6 +3,9 @@ $(document).ready(function() {
   function altTextChecker() {
 
     $('img').each(function() {
+
+      $(this).after('<p>Output: ' + $(this).attr('alt') + '</p>');
+
       if($(this).attr('alt') == "" || $(this).attr('alt') === undefined) {
         console.log($(this).attr('src'));
       }
