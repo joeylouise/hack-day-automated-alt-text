@@ -36,28 +36,32 @@
             .new {
                 color: green;
             }
+          
+          .error {
+              color: red;
+          }
         </style>
     </head>
     <body>
         <div class="main">
-            <div>
-                <h2>Empty alt attribute</h2>
+            <div class="main-image">
+              <h2 class="error">Empty alt attribute</h2>
                 <img src="assets/img/img1.jpg" alt="" />
             </div>
-            <div>
-              <h2>Empty alt attribute</h2>
+            <div class="main-image">
+                <h2 class="error">Empty alt attribute</h2>
                 <img src="assets/img/img2.jpg" alt="" />
             </div>
-            <div>
+            <div class="main-image">
                 <h2>Alt attribute present and correct</h2>
                 <img src="assets/img/img3.jpg" alt="I have alt text!" />
              </div>
-            <div>
-                <h2>Alt attribute present and correct</h2>
+            <div class="main-image">
+                <h2>Alt attribute present and correct</h2>  
                 <img src="assets/img/img4.jpg" alt="I have alt text, too." />
             </div>
-            <div>
-                <h2>Missing alt attribute</h2>
+            <div class="main-image">
+                <h2 class="error">Missing alt attribute</h2>
                 <img src="assets/img/img5.jpg" />
             </div>
         </div>
