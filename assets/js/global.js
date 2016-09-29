@@ -1,9 +1,10 @@
+
   $(document).ready(function() {
 
   var api_key = 'AIzaSyDLIGqwf3JKvLURq3nzwrV3IkDwZmoegP8';
 
   var brokenImages = [];
-    
+
     // Converts image to dataUri
     function getDataUri(url, callback) {
       var image = new Image();
@@ -23,18 +24,25 @@
       };
 
       image.src = url;
-  };
+    };
 
   // Selects href from images without alt text
   function altTextChecker() {
 
     $('img').each(function() {
+
       var imgSrc = $(this).attr('src');
       
-      //$(this).after('<p>Output: ' + $(this).attr('alt') + '</p>');
+      if($(this).attr('alt') == "") {
+        $(this).after('<p>Alt attribute exists but is not defined</p>');
+      } else if ($(this).attr('alt') === undefined) {
+        $(this).after('<p>Alt attribute is undefined</p>');
+      } else {
+        $(this).after('<p>Alt: ' + $(this).attr('alt') + '</p>');
+      }
 
       if($(this).attr('alt') == "" || $(this).attr('alt') === undefined) {
-        
+
         getDataUri(imgSrc, function(dataUri) {
 
         var json = '{' +
