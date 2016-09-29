@@ -51,7 +51,7 @@
           ' "requests": [' +
           '	{ ' +
           '	  "image": {' +
-          '	    "content":"' + dataUri.replace("data:image/png;base64,", "") + '"' +
+          '	    "content":"' + dataUri + '"' +
           '	  },' +
           '	  "features": [' +
           '	      {' +
@@ -77,7 +77,7 @@
             //console.log(data.responses[0].labelAnnotations);
 
             $.each(data.responses[0].labelAnnotations, function(i, val) {
-              if (val['score'] >= 0.8) {
+              if (val['score'] >= 0.5) {
                 keywordList = keywordList + val['description'] + ', ';
               }
             });
