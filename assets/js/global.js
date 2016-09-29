@@ -87,13 +87,7 @@
             //console.log(keywordList);
             that.attr('alt', 'This image may contain ' + keywordList);
 
-            if(that.attr('alt') == "") {
-             that.after('<p>Alt attribute exists but is not defined</p>');
-            } else if (that.attr('alt') === undefined) {
-              that.after('<p>Alt attribute is undefined</p>');
-            } else {
-              that.after('<p>Alt: ' + that.attr('alt') + '</p>');
-            }
+            that.after('<p class="new">New Alt: ' + that.attr('alt') + '</p>');
           }
   
         });

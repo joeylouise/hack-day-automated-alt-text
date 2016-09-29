@@ -9,31 +9,48 @@
         <script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="assets/js/global.js"></script>
         <style type="text/css">
+            body {
+                font-family: 'ABeeZee', sans-serif;
+            }
+
             .main {
-                margin: 0 auto;
-                max-width: 750px;
                 text-align: center;
             }
 
-            body {
-                font-family: 'ABeeZee', sans-serif;
-
+            .main > div {
+                display: inline-block;
+                vertical-align: top;
+                width: 17%;
             }
 
             img {
                 display: block;
                 margin: 30px auto;
-                max-width: 300px;
+                width: 100%;
+            }
+
+            .new {
+                color: green;
             }
         </style>
     </head>
     <body>
         <div class="main">
-            <img src="assets/img/img1.jpg" alt="" />
-            <img src="assets/img/img2.jpg" alt="" />
-            <img src="assets/img/img3.jpg" alt="I have alt text!" />
-            <img src="assets/img/img4.jpg" alt="I have alt text, too." />
-            <img src="assets/img/img5.jpg" />
+            <div>
+                <img src="assets/img/img1.jpg" alt="" />
+            </div>
+            <div>
+                <img src="assets/img/img2.jpg" alt="" />
+            </div>
+            <div>
+                <img src="assets/img/img3.jpg" alt="I have alt text!" />
+             </div>
+            <div>
+                <img src="assets/img/img4.jpg" alt="I have alt text, too." />
+            </div>
+            <div>
+                <img src="assets/img/img5.jpg" />
+            </div>
         </div>
     </body>
 </html>
