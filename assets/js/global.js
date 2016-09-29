@@ -75,7 +75,12 @@
 
           success: function(data, textStatus, jqXHR) {
 
+            console.log('Keywords: ');
+
             $.each(data.responses[0].labelAnnotations, function(i, val) {
+
+              console.log(' ' + val['description']);
+
               if (val['score'] >= 0.5) {
                 keywordList = keywordList + val['description'] + ', ';
               }
