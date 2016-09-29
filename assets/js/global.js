@@ -31,7 +31,9 @@
 
     $('img').each(function() {
 
-      var imgSrc = $(this).attr('src');
+      var imgSrc = $(this).attr('src'),
+          that   =  $(this),
+          keywordList = "";
       
       if($(this).attr('alt') == "") {
         $(this).after('<p>Alt attribute exists but is not defined</p>');
@@ -74,8 +76,6 @@
           success: function(data, textStatus, jqXHR) {
             //console.log(data.responses[0].labelAnnotations);
 
-            var keywordList = "";
-
             $.each(data.responses[0].labelAnnotations, function(i, val) {
               if (val['score'] >= 0.8) {
                 keywordList = keywordList + val['description'] + ', ';
@@ -84,15 +84,33 @@
 
             keywordList = keywordList.slice(0, -2);
 
-            console.log(keywordList);
+            //console.log(keywordList);
+            that.attr('alt', keywordList);
+
+            if(that.attr('alt') == "") {
+             that.after('<p>Alt attribute exists but is not defined</p>');
+            } else if (that.attr('alt') === undefined) {
+              that.after('<p>Alt attribute is undefined</p>');
+            } else {
+              that.after('<p>Alt: ' + that.attr('alt') + '</p>');
+            }
           }
   
         });
   
         });
 
-
       }
+
+      //setTimeout(function() {
+      //    if(that.attr('alt') == "") {
+      //     that.after('<p>Alt attribute exists but is not defined</p>');
+      //    } else if (that.attr('alt') === undefined) {
+      //      that.after('<p>Alt attribute is undefined</p>');
+      //    } else {
+      //      that.after('<p>Alt: ' + that.attr('alt') + '</p>');
+      //    }
+      //}, 3000);
     });
   }
 
