@@ -34,7 +34,7 @@
       var imgSrc = $(this).attr('src'),
           that   =  $(this),
           keywordList = "";
-      
+
 //      if($(this).attr('alt') == "") {
 //        $(this).after('<p>Alt attribute exists but is not defined</p>');
 //      } else if ($(this).attr('alt') === undefined) {
@@ -62,7 +62,7 @@
           '	}' +
           ']' +
           '}';
-  
+
         $.ajax({
           type: 'POST',
           url: "https://vision.googleapis.com/v1/images:annotate?key=" + api_key,
@@ -72,7 +72,7 @@
           headers: {
             "Content-Type": "application/json",
           },
-  
+
           success: function(data, textStatus, jqXHR) {
 
             $.each(data.responses[0].labelAnnotations, function(i, val) {
@@ -87,9 +87,9 @@
 
             that.after('<p class="new">New Alt: ' + that.attr('alt') + '</p>');
           }
-  
+
         });
-  
+
         });
 
       }
@@ -97,9 +97,9 @@
     });
   }
 
-    var startButton = $('<button id="button">get me some alt text</button>');
+    var startButton = $('<button id="button">Click here for some alt text!</button>');
     $('body').prepend(startButton);
-    
+
     $('#button').on('click', function() {
       altTextChecker();
       $(this).remove();
