@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  
+
     // Converts image to dataUri
     function getDataUri(url, callback) {
       var image = new Image();
@@ -20,17 +20,23 @@ $(document).ready(function() {
 
       image.src = url;
   }
-  
+
   // Selects href from images without alt text
   function altTextChecker() {
 
     $('img').each(function() {
 
-      $(this).after('<p>Output: ' + $(this).attr('alt') + '</p>');
+      if($(this).attr('alt') == "") {
+        $(this).after('<p>Alt attribute exists but is not defined</p>');
+      } else if ($(this).attr('alt') === undefined) {
+        $(this).after('<p>Alt attribute is undefined</p>');
+      } else {
+        $(this).after('<p>Alt: ' + $(this).attr('alt') + '</p>');
+      }
 
       if($(this).attr('alt') == "" || $(this).attr('alt') === undefined) {
         var imgSrc = $(this).attr('src');
-        
+
         getDataUri(imgSrc, function(dataUri) {
           // Do whatever you'd like with the Data URI!
           console.log(dataUri)
