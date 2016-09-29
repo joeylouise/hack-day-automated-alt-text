@@ -40,6 +40,11 @@
 
             .new {
                 color: green;
+                animation: blinker 2s linear infinite;
+            }
+
+            @keyframes blinker {
+                50% { color: blue; }
             }
 
           .error {
