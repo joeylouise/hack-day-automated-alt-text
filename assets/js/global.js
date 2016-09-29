@@ -85,7 +85,7 @@
             keywordList = keywordList.slice(0, -2);
 
             //console.log(keywordList);
-            that.attr('alt', keywordList);
+            that.attr('alt', 'This image may contain ' + keywordList);
 
             if(that.attr('alt') == "") {
              that.after('<p>Alt attribute exists but is not defined</p>');
