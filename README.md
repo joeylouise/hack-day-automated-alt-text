@@ -18,3 +18,10 @@ HOWEVER, alt text is sometimes left blank on purpose, so that a screen reader sk
 ##What we did
 
 We used Google’s Vision API, which uses object recognition technology to analyse images. The API can also be used for detecting and extracting text within images, as well as face detection, including emotions. We took a selection of images, some with alt text and some without. We targeted those without alt text and if objects in the image were identified, and had a score of more than 50%, the alt text attribute was updated to ’This image may contain: x, y, z’.
+
+##How it can be useful for the Trust
+
+Given we have several websites using lots of images, it can be sometimes hard to write alt text for each and every single image, especially for ones which have been posted in the past where alt text was not mandatory. With the help of the script, all empty or non-given alt texts can contain keywords now.
+
+Another, totally different case could be to use the script as a kind of validator for the intranet to filter images uploaded by users which match certain blacklisted keywords. It also could prevent posting dog pics in the cats group.
+
